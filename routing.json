@@ -1,0 +1,10 @@
+{
+    "/" : {
+        "controller" : "mainController",
+        "action" : "index"
+    },
+    "/about" : {
+        "controller" : "mainController",
+        "action" : "about"
+    } 
+}
