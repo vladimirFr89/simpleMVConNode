@@ -6,11 +6,11 @@ class MainController extends Controller {
     }
 
     indexAction(req, res) {
-        res.end('indexAction from MainController!');
+        res.end('indexAction from MainController! with pathname ' + this.pathname);
     }
 
     aboutAction(req, res) {
-        res.end('aboutAction from MainController!');
+        res.end('aboutAction from MainController! with pathname ' + this.pathname);
     }
 }
 

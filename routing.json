@@ -6,5 +6,21 @@
     "/about" : {
         "controller" : "mainController",
         "action" : "about"
-    } 
+    },
+    "/auth" : {
+        "controller" : "authController",
+        "action" : "index"
+    },
+    "/auth/registration" : {
+        "controller" : "authController",
+        "action" : "registration"
+    },    
+    "/auth/login" : {
+        "controller" : "authController",
+        "action" : "login"
+    },
+    "/auth/logout" : {
+        "controller" : "authController",
+        "action" : "logout"
+    }    
 }
