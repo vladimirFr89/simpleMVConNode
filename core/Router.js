@@ -2,6 +2,8 @@ const routing = require('../routing');
 const url = require('url');
 const MainController = require('../Controllers/MainController');
 const AuthController = require('../Controllers/AuthController');
+const fs = require('fs');
+const path = require('path');
 
 class Router {
     run(req, res) {
@@ -26,6 +28,18 @@ class Router {
                 default:
                     res.statusCode = 404;
                     res.end('Page not found!');
+            }
+        } else {
+            console.log(urlParsed.pathname);
+            const pattern = /\.js$/;
+            if (pattern.test(urlParsed.pathname)){
+                const filePath = path.join(__dirname, '../', urlParsed.pathname);
+                fs.readFile(filePath, (err, data) => {
+                    if (err) throw err;
+
+                    res.setHeader('Content-Type', 'application/javascript');
+                    res.end(data);
+                })
             }
         }  
     }

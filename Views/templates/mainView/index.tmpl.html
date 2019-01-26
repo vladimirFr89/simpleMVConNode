@@ -5,6 +5,20 @@
         <title>Simple MVC</title>
     </head>
     <body>
-        <h1>Hello MVC!</h1>
+        <div id="content">
+            
+        </div>
+        <script id="mainTempl" type="text/x-jQuery-tmpl">
+            <h1>${title}</h1>
+        </script>
+
+        <script src="../../../puplic/js/vendor/jquery-3.3.1.js"></script>
+        <script src="../../../puplic/js/vendor/jquery.tmpl.js"></script>
+
+        <script type="text/javascript">
+            const title = 'Ho ho ho!';
+            $("#mainTempl").tmpl(title).appendTo("#content");
+        </script>
+
     </body>
 </html>
