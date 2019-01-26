@@ -14,12 +14,12 @@ class Router {
             let controller;
             switch(routObj.controller) {
                 case 'mainController':
-                    controller = new MainController(urlParsed.pathname);
+                    controller = new MainController(urlParsed.pathname, routObj.action);
                     controller[routObj.action + 'Action'].call(controller, req, res);
                     break;
                 
                 case 'authController':
-                    controller = new AuthController(urlParsed.pathname);
+                    controller = new AuthController(urlParsed.pathname, routObj.action);
                     controller[routObj.action + 'Action'].call(controller, req, res);
                     break;        
 
