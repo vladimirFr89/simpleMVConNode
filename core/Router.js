@@ -2,10 +2,17 @@ const routing = require('../routing');
 const url = require('url');
 const MainController = require('../Controllers/MainController');
 const AuthController = require('../Controllers/AuthController');
-const fs = require('fs');
-const path = require('path');
+const StaticController = require('../Controllers/StaticController');
 
 class Router {
+    constructor(){
+        this._staticPath = '';
+    }
+
+    set staticPath(path) {
+        this._staticPath = path;
+    }
+
     run(req, res) {
         const urlParsed = url.parse(req.url);
 
@@ -31,15 +38,10 @@ class Router {
             }
         } else {
             console.log(urlParsed.pathname);
-            const pattern = /\.js$/;
-            if (pattern.test(urlParsed.pathname)){
-                const filePath = path.join(__dirname, '../', urlParsed.pathname);
-                fs.readFile(filePath, (err, data) => {
-                    if (err) throw err;
-
-                    res.setHeader('Content-Type', 'application/javascript');
-                    res.end(data);
-                })
+            const patternStatic = /\.css$|\.js$/;
+            if (patternStatic.test(urlParsed.pathname)){
+                const controller = new StaticController(urlParsed.pathname, '');
+                controller.serve(this._staticPath, res);
             }
         }  
     }
