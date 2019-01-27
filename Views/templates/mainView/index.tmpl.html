@@ -6,19 +6,57 @@
         <link rel="stylesheet" href="../../../public/css/style.css">
     </head>
     <body>
-        <div id="content">
-            
-        </div>
+
+        <!-- site header -->
+        <header class="header">
+            <div class="container">
+                <h1>Caption</h1>
+            </div>
+        </header>
+
+
+        <!-- view content -->
+        <main>
+            <div id="content" class="container"></div>
+        </main>
+
+        <!-- footer -->
+        <footer class="footer">
+            <div class="container">
+                Vladimir Fedorin 2019                
+            </div>
+        </footer>
+
+
         <script id="mainTempl" type="text/x-jQuery-tmpl">
-            <h1>${title}</h1>
+            <div class="post">
+                    <header class="post__header">
+                        <h2>${title}</h2>
+                    </header>
+                    <div class="post__content">
+                        ${postText}
+                    </div>
+                    <div class="post__info">
+                        <div class="post__author">
+                            <span>${postAuthor}</span>
+                            <span>${postDate}</span>
+                        </div>
+                        <div class="post__link">
+                            <a href=${postLink}>read more</a>
+                        </div>
+                    </div>
+                </div>
         </script>
 
         <script src="../../../public/js/vendor/jquery-3.3.1.js"></script>
         <script src="../../../public/js/vendor/jquery.tmpl.js"></script>
 
         <script type="text/javascript">
-            const title = 'Ho ho ho!';
-            $("#mainTempl").tmpl(title).appendTo("#content");
+            const posts = [
+                { title: "Post Title 1", postAuthor: "Vladimir Fedorin", postDate: "27.01.2019", postLink: "#", postText: "Some text for post 1"},
+                { title: "Post Title 2", postAuthor: "Vladimir Fedorin", postDate: "25.01.2019", postLink: "#", postText: "Some text for post 2"}
+            ];
+            $("#mainTempl").tmpl(posts).appendTo("#content");
         </script>
 
     </body>
