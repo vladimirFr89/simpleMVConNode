@@ -1,0 +1,35 @@
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        title Simple MVC
+        link(rel='stylesheet', href='\'../../../public/css/style.css')
+    
+    body
+        header(class='header')
+            div(class='container')
+                h1 Caption
+        
+        main
+            div(class='container')
+                each post in data
+                    div(class='post')
+                        header(class='post__header')
+                            h2= post.title
+                        
+                        div(class='post__content')= post.postText
+
+                        div(class='post__info')
+                            div(class='post__author')
+                                span= post.postAuthor
+                                span= post.postDate
+                            
+                            div(class='post__link')
+                                a(href= post.postLink) read more
+
+
+
+
+        footer(class='footer')
+            div(class='container') Vladimir Fedorin 2019
+
