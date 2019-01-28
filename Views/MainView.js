@@ -1,6 +1,7 @@
 const View = require('../core/View');
 const fs = require('fs');
 const path = require('path');
+const pug = require('pug');
 
 class MainView extends View {
     constructor(pathname, action) {
@@ -14,6 +15,14 @@ class MainView extends View {
             res.end(data);
         })
         //res.end('This is index view for action ' + this._action);
+    }
+
+    aboutView(res) {
+        const filePath = path.join(__dirname, 'templates/mainView/about.pug');
+        const compileFn = pug.compileFile(filePath);
+        res.end(compileFn({
+            name: 'Vladimir!'
+        }));
     }
 }
 

@@ -13,7 +13,9 @@ class MainController extends Controller {
     }
 
     aboutAction(req, res) {
-        res.end('aboutAction from MainController! with pathname ' + this._pathname);
+        //res.end('aboutAction from MainController! with pathname ' + this._pathname);
+        const view = new MainView(this._pathname, this._action);
+        view[this._action + 'View'].call(view, res);
     }
 }
 
