@@ -7,14 +7,24 @@ class MainView extends View {
         super(pathname, action);
     }
 
-    indexView(res) {
+    indexView(res, data) {
         const filePath = path.join(__dirname, 'templates/mainView/index.pug');
         
-        const posts = [
-            { title: "Post Title 1", postAuthor: "Vladimir Fedorin", postDate: "27.01.2019", postLink: "#", postText: "Some text for post 1"},
-            { title: "Post Title 2", postAuthor: "Vladimir Fedorin", postDate: "25.01.2019", postLink: "#", postText: "Some text for post 2"},
-            { title: "Post Title 3", postAuthor: "Vladimir Fedorin", postDate: "24.01.2019", postLink: "#", postText: "Some text for post 3"}
-        ];
+        // const posts = [
+        //     { title: "Post Title 1", postAuthor: "Vladimir Fedorin", postDate: "27.01.2019", postLink: "#", postText: "Some text for post 1"},
+        //     { title: "Post Title 2", postAuthor: "Vladimir Fedorin", postDate: "25.01.2019", postLink: "#", postText: "Some text for post 2"},
+        //     { title: "Post Title 3", postAuthor: "Vladimir Fedorin", postDate: "24.01.2019", postLink: "#", postText: "Some text for post 3"}
+        // ];
+
+        const posts = data.map(function(post){
+            return {
+                title: post.getTitle(),
+                postAuthor: post.getAuthor(),
+                postDate: post.getDate(),
+                postLink: '#',
+                postText: post.getBody()
+            }
+        });
         
         res.end(
             pug.renderFile(filePath, {
