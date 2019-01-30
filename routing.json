@@ -22,5 +22,13 @@
     "/auth/logout" : {
         "controller" : "authController",
         "action" : "logout"
-    }    
+    },
+    "/admin/" : {
+        "controller" : "adminController",
+        "action" : "index"
+    },
+    "/admin/add" : {
+        "controller" : "adminController",
+        "action" : "registration"
+    }     
 }
