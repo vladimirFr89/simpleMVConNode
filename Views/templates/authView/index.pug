@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        title Login
+    
+    body
+        form(action="" method="POST" id="authForm")
+            label(for="login") login
+            input(type="text" id="login" name="login")
+            label(for="password") Password
+            input(type="password" id="password" name="password")
+            input(type="submit" value="Submit")
+
+        div(id='errorBlock' class="Error")     
+
+        script(src="../../../public/js/vendor/jquery-3.3.1.js" type="text/javascript")
+        script(src="../../../public/js/app/authView.js" type="text/javascript")     

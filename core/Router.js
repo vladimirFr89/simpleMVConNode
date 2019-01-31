@@ -14,6 +14,7 @@ class Router {
     }
 
     run(req, res) {
+
         const urlParsed = url.parse(req.url);
 
         const routObj = routing[urlParsed.pathname];
