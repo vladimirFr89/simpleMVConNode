@@ -21,4 +21,25 @@ schema.methods.setPsw = function(password) {
     this.psw = password;
 }
 
+schema.statics.authorize = function(login, password, callback) {
+    const User = this;
+    User.findOne({ login: login }, function (err, user) {
+        if (err) callback(err, null);
+                
+        if (user === null) {
+            const user = new User({ login: login, psw: password });
+            user.save(function(err, user) {
+                callback(err, null);
+                console.log('!!!save');
+                callback(null, user);
+            });
+
+        } else {
+            console.log('!!!Founded');
+            callback(null, user);
+        }
+    });
+
+}
+
 exports.User = mongoose.model('User', schema);

@@ -6,7 +6,6 @@ class BodyParser{
 
     read(data){
         this._buffer.push(data);
-        console.log(this._buffer);
     }
 
     getBody(){

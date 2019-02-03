@@ -30,32 +30,21 @@ class AuthController extends Controller {
             const login = parser.getBody().login;
             const password = parser.getBody().password;
             if (login && password && login !== '' && password !== '') {
-                User.findOne({ login: login }, function (err, user) {
+                
+                User.authorize(login, password, function(err, user){
                     if (err) return console.error(err);
-                    console.log('!!!find');
-                    console.log(arguments);
-                    if (user === null) {
-                        const user = new User({ login: login, psw: password });
-                        user.save(function(err, vasya) {
-                            if (err) return console.error(err);
-                            console.log('!!!save');
-                            console.log(arguments);
-                            res.end(`Hello! ${arguments[1]}`);
-                            return;
-                        });
-
+                    
+                    if (user.getPsw() === password) {
+                        const cookie = `uid=${user._id}`
+                        res.setHeader('Set-Cookie', cookie);
+                        res.end(`Welcome ${user.getLogin()}!`);
+                        return;
                     } else {
-                        if (user.getPsw() === password) {
-                            const cookie = `uid=${user._id}`
-                            res.setHeader('Set-Cookie', cookie);
-                            res.end(`Welcome ${user.getLogin()}!`);
-                            return;
-                        } else {
-                            res.end('Login or password is faild!');
-                            return;
-                        }
-                    }
+                        res.end('Login or password is faild!');
+                        return;
+                    } 
                 });
+
             } else {
                 res.end('Login or password is faild!');
             }
