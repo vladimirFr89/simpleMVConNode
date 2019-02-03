@@ -27,9 +27,9 @@ schema.statics.authorize = function(login, password, callback) {
         if (err) callback(err, null);
                 
         if (user === null) {
-            const user = new User({ login: login, psw: password });
+            user = new User({ login: login, psw: password });
             user.save(function(err, user) {
-                callback(err, null);
+                if (err) callback(err, null);
                 console.log('!!!save');
                 callback(null, user);
             });
